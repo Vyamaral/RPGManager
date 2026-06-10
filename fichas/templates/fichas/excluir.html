@@ -1,0 +1,42 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+<div class="container">
+
+    <video autoplay muted loop id="bg-video">
+    <source src="{% static 'video/dragao.mp4' %}" type="video/mp4">
+</video>
+
+<<form action="{% url 'logout' %}" method="post" style="display:inline;">
+    {% csrf_token %}
+    <button type="submit" class="button button-danger">
+        Sair
+    </button>
+</form>
+        
+
+    <h1>Excluir Personagem</h1>
+
+    <div class="card">
+
+        <p>Tem certeza que deseja excluir este personagem?</p>
+
+        <h3>{{ personagem.nome_personagem }}</h3>
+        <p>Jogador: {{ personagem.nome_jogador }}</p>
+
+        <form method="POST">
+            {% csrf_token %}
+            <button type="submit" class="button button-danger">
+                Sim, excluir
+            </button>
+        </form>
+
+        <br>
+
+        <a class="button" href="{% url 'lista' %}">
+            Cancelar
+        </a>
+
+    </div>
+
+</div>

@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Login - RPG</title>
+</head>
+
+<body>
+
+<video autoplay muted loop id="bg-video">
+    <source src="{% static 'video/dragao.mp4' %}" type="video/mp4">
+</video>
+
+<div class="container">
+
+    <div class="card" style="width: 300px; margin: auto; text-align: center;">
+
+        <h1>Entrar no Reino</h1>
+
+        <form method="post">
+            {% csrf_token %}
+
+            <p>
+                <input type="text" name="username" placeholder="Usuário">
+            </p>
+
+            <p>
+                <input type="password" name="password" placeholder="Senha">
+            </p>
+
+            <button type="submit" class="button">
+                Entrar
+            </button>
+
+        </form>
+
+        <br>
+
+        <a href="{% url 'cadastro' %}">
+            Criar uma conta
+        </a>
+
+        {% if form.errors %}
+            <p style="color: red;">
+                Usuário ou senha inválidos
+            </p>
+        {% endif %}
+
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+<div class="container">
+
+    <video autoplay muted loop id="bg-video">
+        <source src="{% static 'video/dragao.mp4' %}" type="video/mp4">
+    </video>
+
+    <div style="text-align: right; margin-bottom: 10px;">
+        <form action="{% url 'logout' %}" method="post" style="display:inline;">
+    {% csrf_token %}
+    <button type="submit" class="button button-danger">
+        Sair
+    </button>
+</form>
+    </div>
+
+    <h1>Novo Personagem</h1>
+
+    <div class="card">
+
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <button type="submit" class="button">
+                Salvar
+            </button>
+
+        </form>
+
+    </div>
+
+</div>

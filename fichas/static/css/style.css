@@ -1,0 +1,191 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Cinzel', serif;
+    color: #eae6ff;
+
+    background: linear-gradient(135deg, #120a2a, #1b143a, #101b2e);
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 30% 20%, rgba(120, 100, 180, 0.15), transparent 50%),
+                radial-gradient(circle at 70% 80%, rgba(80, 120, 160, 0.12), transparent 55%);
+    pointer-events: none;
+}
+
+/*layout central */
+.container {
+    width: 85%;
+    margin: auto;
+    padding: 30px 0;
+}
+
+.card {
+    background: rgba(20, 18, 35, 0.85);
+    border: 1px solid rgba(180, 170, 220, 0.2);
+    border-radius: 10px;
+    padding: 18px 20px;
+    margin: 15px auto;
+    width: 65%;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+/*títulos */
+h1 {
+    text-align: center;
+    color: #d8c9ff;
+    letter-spacing: 1px;
+    font-weight: 500;
+}
+
+h3 {
+    color: #cbbcff;
+}
+
+/* botões */
+.button {
+    display: inline-block;
+    background: #3b2f63;
+    color: #f2eaff;
+    padding: 8px 14px;
+    margin: 5px 4px;
+    border-radius: 6px;
+    text-decoration: none;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: 0.2s;
+}
+
+.button:hover {
+    background: #4a3c7d;
+}
+
+.button-danger {
+    background: #5a2b2b;
+}
+
+.button-danger:hover {
+    background: #7a3a3a;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(10, 10, 20, 0.4);
+    color: white;
+}
+
+body * {
+    position: relative;
+    z-index: 1;
+}
+#bg-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    z-index: -1;
+    filter: brightness(0.35) contrast(1.1);
+}
+
+/* cadastro */
+
+form {
+    width: 100%;
+}
+
+form p {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+label {
+    display: block;
+    margin-bottom: 6px;
+    color: #d8c9ff;
+    font-weight: bold;
+}
+
+/* Campos */
+
+input,
+select,
+textarea {
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 10px;
+    margin: 5px 0;
+
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    background: rgba(10, 10, 20, 0.4);
+    color: white;
+
+    font-size: 15px;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: #8f79d6;
+    box-shadow: 0 0 8px rgba(143, 121, 214, 0.4);
+}
+
+/* Botões */
+
+button.button {
+    width: 100%;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+/* Links */
+
+a {
+    color: #d8c9ff;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #ffffff;
+}
+
+.errorlist {
+    list-style: none;
+    padding: 0;
+    margin: 5px 0;
+    color: #ff8c8c;
+    font-size: 14px;
+}
+
+.helptext,
+ul.errorlist li {
+    display: none;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Efeito de vidro no card */
+
+.card {
+    backdrop-filter: blur(5px);
+}
