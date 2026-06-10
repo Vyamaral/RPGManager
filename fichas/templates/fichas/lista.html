@@ -1,26 +1,21 @@
-<!DOCTYPE html>
-<html>
-<head>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <title>Personagens RPG</title>
-</head>
-
-<body>
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
 
 <div class="container">
 
     <video autoplay muted loop id="bg-video">
-    <source src="{% static 'video/dragao.mp4' %}" type="video/mp4">
-</video>
+        <source src="{% static 'video/dragao.mp4' %}" type="video/mp4">
+    </video>
 
-<form action="{% url 'logout' %}" method="post" style="display:inline;">
-    {% csrf_token %}
-    <button type="submit" class="button button-danger">
-        Sair
-    </button>
-</form>
-        
+    <!-- LOGOUT GLOBAL -->
+    <div class="logout">
+        <form action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="button button-danger">
+                Sair
+            </button>
+        </form>
+    </div>
 
     <h1>Lista de Personagens</h1>
 
@@ -34,40 +29,51 @@
 
     {% for personagem in personagens %}
 
-    <div class="card">
+    <div class="card personagem-card">
 
-        <h3>{{ personagem.nome_personagem }}</h3>
+        <!-- DADOS -->
+        <div class="dados-personagem">
 
-        <p>Jogador: {{ personagem.nome_jogador }}</p>
-        <p>Classe: {{ personagem.classe }}</p>
-        <p>Raça: {{ personagem.raca }}</p>
-        <p>Vida: {{ personagem.vida }}</p>
-        <p>Mana: {{ personagem.mana }}</p>
-        <p>Nível: {{ personagem.nivel }}</p>
-        <p>Força: {{ personagem.forca }}</p>
-        <p>Destreza: {{ personagem.destreza }}</p>
-        <p>Constituição: {{ personagem.constituicao }}</p>
-        <p>Inteligência: {{ personagem.inteligencia }}</p>
-        <p>Sabedoria: {{ personagem.sabedoria }}</p>
-        <p>Carisma: {{ personagem.carisma }}</p>
+            <h3>{{ personagem.nome_personagem }}</h3>
 
-        <a class="button" href="{% url 'editar' personagem.id %}">
-            Editar
-        </a>
+            <p><strong>Jogador:</strong> {{ personagem.nome_jogador }}</p>
+            <p><strong>Classe:</strong> {{ personagem.classe }}</p>
+            <p><strong>Raça:</strong> {{ personagem.raca }}</p>
+            <p><strong>Vida:</strong> {{ personagem.vida }}</p>
+            <p><strong>Mana:</strong> {{ personagem.mana }}</p>
+            <p><strong>Nível:</strong> {{ personagem.nivel }}</p>
+            <p><strong>Força:</strong> {{ personagem.forca }}</p>
+            <p><strong>Destreza:</strong> {{ personagem.destreza }}</p>
+            <p><strong>Constituição:</strong> {{ personagem.constituicao }}</p>
+            <p><strong>Inteligência:</strong> {{ personagem.inteligencia }}</p>
+            <p><strong>Sabedoria:</strong> {{ personagem.sabedoria }}</p>
+            <p><strong>Carisma:</strong> {{ personagem.carisma }}</p>
 
-        <a class="button button-danger" href="{% url 'excluir' personagem.id %}">
-            Excluir
-        </a>
+            <div class="acoes">
+                <a class="button" href="{% url 'editar' personagem.id %}">
+                    Editar
+                </a>
+
+                <a class="button button-danger" href="{% url 'excluir' personagem.id %}">
+                    Excluir
+                </a>
+            </div>
+
+        </div>
+
+        <!-- IMAGEM -->
+        <div class="imagem-personagem">
+            {% if personagem.avatar %}
+                <img src="{{ personagem.avatar.url }}" alt="{{ personagem.nome_personagem }}">
+            {% else %}
+                <p>Sem avatar</p>
+            {% endif %}
+        </div>
 
     </div>
 
     {% empty %}
-
-    <p>Nenhum personagem cadastrado.</p>
-
+        <p>Nenhum personagem cadastrado.</p>
     {% endfor %}
 
 </div>
-
-</body>
-</html>
