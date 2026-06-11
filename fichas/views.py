@@ -1,19 +1,40 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, login
 
 from .models import Personagem
 from .forms import PersonagemForm, CadastroForm
 
 
+# =========================
+# LOGIN MANUAL (AZURE SAFE)
+# =========================
+def login_view(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            return redirect('lista')  # precisa existir no urls.py
+        else:
+            return render(request, 'login.html', {'erro': True})
+
+    return render(request, 'login.html')
+
+
+# =========================
+# LISTAR PERSONAGENS
+# =========================
 @login_required
 def listar_personagens(request):
 
     if request.user.is_superuser:
         personagens = Personagem.objects.all()
     else:
-        personagens = Personagem.objects.filter(
-            usuario=request.user
-        )
+        personagens = Personagem.objects.filter(usuario=request.user)
 
     return render(
         request,
@@ -22,12 +43,12 @@ def listar_personagens(request):
     )
 
 
+# =========================
+# CRIAR PERSONAGEM
+# =========================
 @login_required
 def criar_personagem(request):
-    form = PersonagemForm(
-        request.POST or None,
-        request.FILES or None
-    )
+    form = PersonagemForm(request.POST or None, request.FILES or None)
 
     if form.is_valid():
         personagem = form.save(commit=False)
@@ -42,26 +63,18 @@ def criar_personagem(request):
     )
 
 
+# =========================
+# EDITAR PERSONAGEM
+# =========================
 @login_required
 def editar_personagem(request, id):
 
     if request.user.is_superuser:
-        personagem = get_object_or_404(
-            Personagem,
-            id=id
-        )
+        personagem = get_object_or_404(Personagem, id=id)
     else:
-        personagem = get_object_or_404(
-            Personagem,
-            id=id,
-            usuario=request.user
-        )
+        personagem = get_object_or_404(Personagem, id=id, usuario=request.user)
 
-    form = PersonagemForm(
-        request.POST or None,
-        request.FILES or None,
-        instance=personagem
-    )
+    form = PersonagemForm(request.POST or None, request.FILES or None, instance=personagem)
 
     if form.is_valid():
         form.save()
@@ -77,20 +90,16 @@ def editar_personagem(request, id):
     )
 
 
+# =========================
+# EXCLUIR PERSONAGEM
+# =========================
 @login_required
 def excluir_personagem(request, id):
 
     if request.user.is_superuser:
-        personagem = get_object_or_404(
-            Personagem,
-            id=id
-        )
+        personagem = get_object_or_404(Personagem, id=id)
     else:
-        personagem = get_object_or_404(
-            Personagem,
-            id=id,
-            usuario=request.user
-        )
+        personagem = get_object_or_404(Personagem, id=id, usuario=request.user)
 
     if request.method == 'POST':
         personagem.delete()
@@ -103,6 +112,9 @@ def excluir_personagem(request, id):
     )
 
 
+# =========================
+# CADASTRO DE USUÁRIO
+# =========================
 def cadastro(request):
 
     if request.method == 'POST':
@@ -111,7 +123,6 @@ def cadastro(request):
         if form.is_valid():
             form.save()
             return redirect('login')
-
     else:
         form = CadastroForm()
 
