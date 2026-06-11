@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "rpgmanager",
+        "NAME": "postgres",
         "USER": "adminuser@rpgmanager",
         "PASSWORD": "Cardoso99",
         "HOST": "rpgmanager.postgres.database.azure.com",
