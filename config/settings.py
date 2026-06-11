@@ -7,6 +7,9 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# ======================
+# SECURITY
+# ======================
 SECRET_KEY = os.getenv(
     "SECRET_KEY",
     "django-insecure-rpgmanager-dev-2026"
@@ -21,6 +24,9 @@ ALLOWED_HOSTS = [
     "127.0.0.1",
 ]
 
+# ======================
+# APPS
+# ======================
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -31,6 +37,9 @@ INSTALLED_APPS = [
     'fichas',
 ]
 
+# ======================
+# MIDDLEWARE
+# ======================
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
@@ -62,12 +71,15 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
+# ======================
+# DATABASE (AZURE POSTGRES)
+# ======================
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "postgres",
-        "USER": "adminuser",
-        "PASSWORD": "SUA_SENHA_DO_AZURE",
+        "NAME": "rpgmanager",
+        "USER": "adminuser@rpgmanager",
+        "PASSWORD": "Cardoso99",
         "HOST": "rpgmanager.postgres.database.azure.com",
         "PORT": "5432",
         "OPTIONS": {
@@ -76,6 +88,9 @@ DATABASES = {
     }
 }
 
+# ======================
+# VALIDATORS
+# ======================
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -91,14 +106,17 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# ======================
+# I18N / TIMEZONE
+# ======================
 LANGUAGE_CODE = 'pt-br'
-
 TIME_ZONE = 'America/Sao_Paulo'
-
 USE_I18N = True
-
 USE_TZ = True
 
+# ======================
+# STATIC / MEDIA
+# ======================
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
@@ -112,12 +130,18 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
+# ======================
+# AUTH
+# ======================
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/login/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# ======================
+# CSRF (DEPLOY)
+# ======================
 CSRF_TRUSTED_ORIGINS = [
     "https://rpgmanager-production.up.railway.app",
     "https://webapp-aula13-hrdzddd2ezbxa9bv.eastus-01.azurewebsites.net",
