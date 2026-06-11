@@ -1,185 +1,93 @@
-# 🎲 RPGManager
+RPG Manager - Sistema de Fichas de RPG
 
-Sistema web para gerenciamento de personagens de RPG desenvolvido com Django.
+Este é um projeto web desenvolvido em Django, com o objetivo de permitir que jogadores criem, visualizem, editem e excluam fichas de personagens de RPG de forma simples e organizada.
 
-## 📌 Descrição
+FUNCIONALIDADES
 
-O RPGManager é uma aplicação web criada para facilitar o gerenciamento de fichas de personagens de RPG. O sistema permite que usuários criem contas, façam login e gerenciem seus próprios personagens de forma organizada e segura.
+- Criar fichas de personagens de RPG
+- Armazenar informações como:
+  - Nome do personagem
+  - Nome do jogador
+  - Vida (HP)
+  - Classe
+  - Outras características do personagem
+- Listar todos os personagens cadastrados
+- Editar fichas existentes
+- Excluir personagens
+- Sistema de login para controle de usuários
 
-Cada usuário possui acesso apenas às suas próprias fichas, enquanto administradores possuem controle total através do painel administrativo do Django.
+TECNOLOGIAS UTILIZADAS
 
-O projeto está hospedado na nuvem utilizando Railway e PostgreSQL.
+- Python
+- Django
+- HTML5
+- CSS3
+- JavaScript (básico)
+- PostgreSQL (ou SQLite em desenvolvimento)
 
----
+ESTRUTURA DO PROJETO
 
-## 🚀 Funcionalidades
-
-* Cadastro de usuários
-* Login e logout
-* Criação de fichas de personagens
-* Edição de fichas
-* Exclusão de fichas
-* Upload de imagem para personagens
-* Controle de permissões por usuário
-* Painel administrativo para administradores
-* Interface temática inspirada em RPG
-* Armazenamento persistente em PostgreSQL
-* Hospedagem em produção utilizando Railway
-
----
-
-## 🛠️ Tecnologias Utilizadas
-
-### Backend
-
-* Python 3
-* Django 6
-* PostgreSQL
-* Gunicorn
-* WhiteNoise
-
-### Frontend
-
-* HTML5
-* CSS3
-
-### Hospedagem
-
-* Railway
-* PostgreSQL Railway
-
----
-
-## 🌐 Acesso Online
-
-O sistema está disponível em:
-
-https://rpgmanager-production.up.railway.app
-
----
-
-## 📦 Instalação Local
-
-### Clonar o repositório
-
-```bash
-git clone https://github.com/Vyamaral/RPGManager.git
-cd RPGManager
-```
-
-### Criar ambiente virtual
-
-```bash
-python -m venv venv
-```
-
-### Ativar ambiente virtual
-
-Windows:
-
-```bash
-venv\Scripts\activate
-```
-
-Linux / Mac:
-
-```bash
-source venv/bin/activate
-```
-
-### Instalar dependências
-
-```bash
-pip install -r requirements.txt
-```
-
-### Executar migrações
-
-```bash
-python manage.py migrate
-```
-
-### Criar administrador (opcional)
-
-```bash
-python manage.py createsuperuser
-```
-
-### Iniciar servidor
-
-```bash
-python manage.py runserver
-```
-
-Acesse:
-
-```text
-http://127.0.0.1:8000/
-```
-
----
-
-## 📁 Estrutura do Projeto
-
-```text
 RPGManager/
-│
-├── config/
+|
 ├── fichas/
+│   ├── migrations/
 │   ├── templates/
-│   ├── static/
 │   ├── models.py
 │   ├── views.py
-│   └── forms.py
-│
-├── media/
-├── staticfiles/
+│   └── urls.py
+|
+├── config/
+│   ├── settings.py
+│   ├── urls.py
+|
 ├── manage.py
-├── requirements.txt
-├── Dockerfile
-└── README.md
-```
+└── db.sqlite3
 
----
+COMO EXECUTAR O PROJETO
 
-## 🔒 Controle de Acesso
+1. Clonar o repositório:
+git clone https://github.com/seu-usuario/rpg-manager.git
+cd rpg-manager
 
-### Usuário comum
+2. Criar ambiente virtual:
+python -m venv venv
 
-* Criar personagens
-* Editar seus próprios personagens
-* Excluir seus próprios personagens
+3. Ativar ambiente virtual:
 
-### Administrador
+Windows:
+venv\Scripts\activate
 
-* Gerenciar todos os personagens
-* Acessar o painel administrativo
-* Gerenciar usuários do sistema
+Linux/Mac:
+source venv/bin/activate
 
----
+4. Instalar dependências:
+pip install -r requirements.txt
 
-## 📈 Melhorias Futuras
+5. Rodar migrações:
+python manage.py migrate
 
-* Sistema de campanhas
-* Sistema de sessões
-* Inventário para personagens
-* Exportação de fichas em PDF
-* Perfil de usuário
-* Recuperação de senha por e-mail
-* API REST
-* Interface responsiva para dispositivos móveis
+6. Criar superusuário (opcional):
+python manage.py createsuperuser
 
----
+7. Iniciar servidor:
+python manage.py runserver
 
-## 👨‍💻 Autor
+Acesse:
+http://127.0.0.1:8000/
 
-Desenvolvido por **Vyamaral**
+LOGIN
 
-GitHub:
-https://github.com/Vyamaral
+O sistema possui autenticação para proteger as fichas dos usuários.
 
----
+OBJETIVO
 
-## 📄 Licença
+Projeto acadêmico para praticar:
+- Django
+- CRUD
+- MVC
+- Banco de dados
+- Autenticação
 
-Este projeto está sob a licença MIT.
+AUTORA
+
+Evelyn Cardoso
