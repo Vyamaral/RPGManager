@@ -4,6 +4,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 from fichas import views
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     # =====================
@@ -17,14 +18,14 @@ urlpatterns = [
     path('', include('fichas.urls')),
 
     # =====================
-    # LOGIN MANUAL (CORRIGIDO)
+    # LOGIN (CUSTOM)
     # =====================
     path('login/', views.login_view, name='login'),
 
     # =====================
-    # LOGOUT
+    # LOGOUT (CORRIGIDO)
     # =====================
-    path('logout/', views.logout_view, name='logout'),
+    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
 
     # =====================
     # CADASTRO
@@ -33,7 +34,7 @@ urlpatterns = [
 ]
 
 # =====================
-# MEDIA (DESENVOLVIMENTO)
+# MEDIA (DEV)
 # =====================
 if settings.DEBUG:
     urlpatterns += static(

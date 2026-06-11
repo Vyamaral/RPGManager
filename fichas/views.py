@@ -1,13 +1,13 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 
 from .models import Personagem
 from .forms import PersonagemForm, CadastroForm
 
 
 # =========================
-# LOGIN MANUAL (AZURE SAFE)
+# LOGIN
 # =========================
 def login_view(request):
     if request.method == 'POST':
@@ -18,7 +18,7 @@ def login_view(request):
 
         if user is not None:
             login(request, user)
-            return redirect('lista')  # precisa existir no urls.py
+            return redirect('lista')
         else:
             return render(request, 'login.html', {'erro': True})
 
@@ -26,25 +26,28 @@ def login_view(request):
 
 
 # =========================
-# LISTAR PERSONAGENS
+# LOGOUT
+# =========================
+def logout_view(request):
+    logout(request)
+    return redirect('login')
+
+
+# =========================
+# LISTAR
 # =========================
 @login_required
 def listar_personagens(request):
-
     if request.user.is_superuser:
         personagens = Personagem.objects.all()
     else:
         personagens = Personagem.objects.filter(usuario=request.user)
 
-    return render(
-        request,
-        'fichas/lista.html',
-        {'personagens': personagens}
-    )
+    return render(request, 'fichas/lista.html', {'personagens': personagens})
 
 
 # =========================
-# CRIAR PERSONAGEM
+# CRIAR
 # =========================
 @login_required
 def criar_personagem(request):
@@ -56,19 +59,14 @@ def criar_personagem(request):
         personagem.save()
         return redirect('lista')
 
-    return render(
-        request,
-        'fichas/criar.html',
-        {'form': form}
-    )
+    return render(request, 'fichas/criar.html', {'form': form})
 
 
 # =========================
-# EDITAR PERSONAGEM
+# EDITAR
 # =========================
 @login_required
 def editar_personagem(request, id):
-
     if request.user.is_superuser:
         personagem = get_object_or_404(Personagem, id=id)
     else:
@@ -80,22 +78,14 @@ def editar_personagem(request, id):
         form.save()
         return redirect('lista')
 
-    return render(
-        request,
-        'fichas/editar.html',
-        {
-            'form': form,
-            'personagem': personagem
-        }
-    )
+    return render(request, 'fichas/editar.html', {'form': form, 'personagem': personagem})
 
 
 # =========================
-# EXCLUIR PERSONAGEM
+# EXCLUIR
 # =========================
 @login_required
 def excluir_personagem(request, id):
-
     if request.user.is_superuser:
         personagem = get_object_or_404(Personagem, id=id)
     else:
@@ -105,18 +95,13 @@ def excluir_personagem(request, id):
         personagem.delete()
         return redirect('lista')
 
-    return render(
-        request,
-        'fichas/excluir.html',
-        {'personagem': personagem}
-    )
+    return render(request, 'fichas/excluir.html', {'personagem': personagem})
 
 
 # =========================
-# CADASTRO DE USUÁRIO
+# CADASTRO
 # =========================
 def cadastro(request):
-
     if request.method == 'POST':
         form = CadastroForm(request.POST)
 
@@ -126,8 +111,4 @@ def cadastro(request):
     else:
         form = CadastroForm()
 
-    return render(
-        request,
-        'fichas/cadastro.html',
-        {'form': form}
-    )
+    return render(request, 'fichas/cadastro.html', {'form': form})
