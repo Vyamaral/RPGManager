@@ -1,77 +1,185 @@
-🎲 RPGManager
-📌 Descrição do Projeto
+# 🎲 RPGManager
 
-O RPGManager é um sistema desenvolvido em Python com o objetivo de facilitar o gerenciamento de campanhas de RPG.
-Ele permite organizar personagens, sessões e jogadores de forma simples e eficiente, ajudando mestres e jogadores a manter tudo estruturado durante o jogo.
+Sistema web para gerenciamento de personagens de RPG desenvolvido com Django.
 
-🚀 Funcionalidades
-Cadastro de personagens
-Gerenciamento de campanhas
-Controle de sessões de RPG
-Organização de jogadores
-Sistema simples e de fácil uso
-🛠️ Tecnologias Utilizadas
-Python
-Django (ou Flask, dependendo da versão do projeto)
-SQLite como banco de dados padrão
-HTML e CSS (caso tenha interface web)
-📦 Instalação do Projeto
-1. Clonar o repositório
+## 📌 Descrição
 
-Abra o terminal e execute:
+O RPGManager é uma aplicação web criada para facilitar o gerenciamento de fichas de personagens de RPG. O sistema permite que usuários criem contas, façam login e gerenciem seus próprios personagens de forma organizada e segura.
 
+Cada usuário possui acesso apenas às suas próprias fichas, enquanto administradores possuem controle total através do painel administrativo do Django.
+
+O projeto está hospedado na nuvem utilizando Railway e PostgreSQL.
+
+---
+
+## 🚀 Funcionalidades
+
+* Cadastro de usuários
+* Login e logout
+* Criação de fichas de personagens
+* Edição de fichas
+* Exclusão de fichas
+* Upload de imagem para personagens
+* Controle de permissões por usuário
+* Painel administrativo para administradores
+* Interface temática inspirada em RPG
+* Armazenamento persistente em PostgreSQL
+* Hospedagem em produção utilizando Railway
+
+---
+
+## 🛠️ Tecnologias Utilizadas
+
+### Backend
+
+* Python 3
+* Django 6
+* PostgreSQL
+* Gunicorn
+* WhiteNoise
+
+### Frontend
+
+* HTML5
+* CSS3
+
+### Hospedagem
+
+* Railway
+* PostgreSQL Railway
+
+---
+
+## 🌐 Acesso Online
+
+O sistema está disponível em:
+
+https://rpgmanager-production.up.railway.app
+
+---
+
+## 📦 Instalação Local
+
+### Clonar o repositório
+
+```bash
 git clone https://github.com/Vyamaral/RPGManager.git
 cd RPGManager
+```
 
-2. Criar ambiente virtual
+### Criar ambiente virtual
 
+```bash
 python -m venv venv
+```
 
-3. Ativar o ambiente virtual
+### Ativar ambiente virtual
 
-No Windows:
+Windows:
 
+```bash
 venv\Scripts\activate
+```
 
-No Linux ou Mac:
+Linux / Mac:
 
+```bash
 source venv/bin/activate
+```
 
-4. Instalar dependências
+### Instalar dependências
 
+```bash
 pip install -r requirements.txt
+```
 
-▶️ Como executar o projeto
+### Executar migrações
 
-Se o projeto for Django, execute:
+```bash
+python manage.py migrate
+```
 
+### Criar administrador (opcional)
+
+```bash
+python manage.py createsuperuser
+```
+
+### Iniciar servidor
+
+```bash
 python manage.py runserver
+```
 
-Depois acesse no navegador:
+Acesse:
 
+```text
 http://127.0.0.1:8000/
+```
 
-📁 Estrutura do Projeto
+---
 
+## 📁 Estrutura do Projeto
+
+```text
 RPGManager/
 │
-├── app/
-├── templates/
-├── static/
+├── config/
+├── fichas/
+│   ├── templates/
+│   ├── static/
+│   ├── models.py
+│   ├── views.py
+│   └── forms.py
+│
+├── media/
+├── staticfiles/
 ├── manage.py
 ├── requirements.txt
+├── Dockerfile
 └── README.md
+```
 
-📈 Melhorias Futuras
-Sistema de login e autenticação de usuários
-Interface mais moderna e responsiva
-Migração para PostgreSQL em produção
-API REST para integração com outros sistemas
-Sistema de inventário para personagens
-👨‍💻 Autor
+---
 
-Desenvolvido por: Vyamaral
+## 🔒 Controle de Acesso
 
-📄 Licença
+### Usuário comum
+
+* Criar personagens
+* Editar seus próprios personagens
+* Excluir seus próprios personagens
+
+### Administrador
+
+* Gerenciar todos os personagens
+* Acessar o painel administrativo
+* Gerenciar usuários do sistema
+
+---
+
+## 📈 Melhorias Futuras
+
+* Sistema de campanhas
+* Sistema de sessões
+* Inventário para personagens
+* Exportação de fichas em PDF
+* Perfil de usuário
+* Recuperação de senha por e-mail
+* API REST
+* Interface responsiva para dispositivos móveis
+
+---
+
+## 👨‍💻 Autor
+
+Desenvolvido por **Vyamaral**
+
+GitHub:
+https://github.com/Vyamaral
+
+---
+
+## 📄 Licença
 
 Este projeto está sob a licença MIT.
