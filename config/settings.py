@@ -78,7 +78,7 @@ DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": "postgres",
-        "USER": "adminuser@rpgmanager",
+        "USER": "adminuser",
         "PASSWORD": "Cardoso99",
         "HOST": "rpgmanager.postgres.database.azure.com",
         "PORT": "5432",
