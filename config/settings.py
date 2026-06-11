@@ -65,11 +65,14 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.getenv("DB_NAME", "rpgmanager"),
-        "USER": os.getenv("DB_USER", "postgres"),
-        "PASSWORD": os.getenv("DB_PASSWORD", "postgres"),
-        "HOST": os.getenv("DB_HOST", "db"),
-        "PORT": os.getenv("DB_PORT", "5432"),
+        "NAME": "postgres",
+        "USER": "adminuser",
+        "PASSWORD": "SUA_SENHA_DO_AZURE",
+        "HOST": "rpgmanager.postgres.database.azure.com",
+        "PORT": "5432",
+        "OPTIONS": {
+            "sslmode": "require",
+        },
     }
 }
 
