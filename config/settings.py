@@ -15,6 +15,7 @@ SECRET_KEY = os.getenv(
 DEBUG = os.getenv("DEBUG", "False") == "True"
 
 ALLOWED_HOSTS = [
+    "webapp-aula13-hrdzddd2ezbxa9bv.eastus-01.azurewebsites.net",
     "rpgmanager-production.up.railway.app",
     "localhost",
     "127.0.0.1",
@@ -116,4 +117,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CSRF_TRUSTED_ORIGINS = [
     "https://rpgmanager-production.up.railway.app",
+    "https://webapp-aula13-hrdzddd2ezbxa9bv.eastus-01.azurewebsites.net",
 ]
