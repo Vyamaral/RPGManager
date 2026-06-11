@@ -12,14 +12,13 @@ SECRET_KEY = os.getenv(
     "django-insecure-rpgmanager-dev-2026"
 )
 
-DEBUG = os.getenv("DEBUG", "True") == "True"
+DEBUG = os.getenv("DEBUG", "False") == "True"
 
-print("DEBUG =", DEBUG)
-print("DB_HOST =", os.getenv("DB_HOST"))
-print("DB_NAME =", os.getenv("DB_NAME"))
-print("DB_USER =", os.getenv("DB_USER"))
-
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = [
+    "rpgmanager-production.up.railway.app",
+    "localhost",
+    "127.0.0.1",
+]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
