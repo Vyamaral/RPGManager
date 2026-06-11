@@ -15,7 +15,7 @@ SECRET_KEY = os.getenv(
     "django-insecure-rpgmanager-dev-2026"
 )
 
-DEBUG = os.getenv("DEBUG", "False") == "False"
+DEBUG = True
 
 ALLOWED_HOSTS = [
     "webapp-aula13-hrdzddd2ezbxa9bv.eastus-01.azurewebsites.net",
