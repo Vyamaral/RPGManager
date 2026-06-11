@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 
 import os
 from pathlib import Path
-raise Exception("SETTINGS CARREGADO")
+raise Exception("TESTE_RAILWAY")
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
