@@ -46,7 +46,7 @@ RPGManager/
 COMO EXECUTAR O PROJETO
 
 1. Clonar o repositório:
-git clone https://github.com/Vyamaral/rpg-manager.git
+git clone https://github.com/Vyamaral/RPGManager
 cd rpg-manager
 
 2. Criar ambiente virtual:
